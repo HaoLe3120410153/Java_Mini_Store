@@ -99,7 +99,7 @@
         <Property name="text" type="java.lang.String" value="LOGIN"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="C&#x1eed;a h&#xe0;ng &#x111;&#x1ed3; &#x103;n nhanh"/>
+            <TitledBorder title="Si&#xea;u th&#x1ecb; mini"/>
           </Border>
         </Property>
       </Properties>

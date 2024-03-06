@@ -40,7 +40,7 @@ public class HoaDonBLL {
        return this.listExcelHD;
     }
     public void resetListExcel(){
-        if(!listExcelHD.isEmpty()){
+        while(!listExcelHD.isEmpty()){
             listExcelHD.remove(0);
         }
     }
@@ -69,38 +69,35 @@ public class HoaDonBLL {
         this.loadListHD();
     }
     public String MaMoi(){
-        String ma = hoaDonDAL.getMaMax();
-        if(ma != null){
-            int size = ma.length();
-            int ma_hien_tai = Integer.parseInt(ma.substring(2,size));
-            int ma_moi = ma_hien_tai + 1;
+/*s1*/  String ma = hoaDonDAL.getMaMax();
+/*c1*/  if(ma != null){
+/*s2*/      int size = ma.length();
+/*s3*/      int ma_hien_tai = Integer.parseInt(ma.substring(2,size));
+/*s4*/      int ma_moi = ma_hien_tai + 1;
             
-            if(ma_moi < 10){
-                return "0" + ma_moi;
+/*c2*/      if(ma_moi < 10){
+/*s5*/          return "0" + ma_moi;
             }
-            return "" + ma_moi;
+/*s6*/      return "" + ma_moi;
         }
-        return "01";
+/*s7*/      return "01";
     }
-    public void setTableHD(DefaultTableModel model){
-        this.resetListHD();
-        this.loadListHD();
-        
-        while(model.getRowCount() > 0){
-            model.removeRow(0);
+    public void setTableHD(DefaultTableModel model){    
+/*s1*/  this.resetListHD();
+/*s2*/  this.loadListHD();
+/*c1*/  while(model.getRowCount() > 0){
+/*s3*/      model.removeRow(0);
         }
-        resetListExcel();
-        ThanhVienDTO thanhVienDTO = null;
-        String ten_tv = "";
-        for (HoaDonDTO hoaDonDTO : listHD) {
-            thanhVienDTO = new ThanhVienBLL().getTvByMaTV(hoaDonDTO.getMa_thanh_vien());
-            if(thanhVienDTO != null){
-                ten_tv = thanhVienDTO.getTen_thanh_vien();
+/*s4*/  resetListExcel();
+/*s5*/  ThanhVienDTO thanhVienDTO = null;String ten_tv = "";
+/*c2*/  for (HoaDonDTO hoaDonDTO : listHD) {
+/*s6*/      thanhVienDTO = new ThanhVienBLL().getTvByMaTV(hoaDonDTO.getMa_thanh_vien());
+/*c3*/      if(thanhVienDTO != null){
+/*s7*/          ten_tv = thanhVienDTO.getTen_thanh_vien();  
+            }else{
+/*s8*/          ten_tv = "null";
             }
-            else{
-                ten_tv = "null";
-            }
-            model.addRow(new Object[]{
+/*s9*/      model.addRow(new Object[]{
                 hoaDonDTO.getMa_hoa_don(),
                 hoaDonDTO.getNgay_xuat(),
                 hoaDonDTO.getMa_nhan_vien(),
@@ -113,64 +110,63 @@ public class HoaDonBLL {
                 hoaDonDTO.getMa_phieu_giam_gia(),
                 hoaDonDTO.getDiem()
             });
-            updateListExcel(hoaDonDTO);
+/*s10*/     updateListExcel(hoaDonDTO);
         }
-        model.fireTableDataChanged();
+/*s11*/ model.fireTableDataChanged();
     }
+    
     public int getHoaDonCoGiaMax(){
-        this.resetListHD();
-        this.loadListHD();
+/*s1*/  this.resetListHD();
+/*s2*/  this.loadListHD();
         
-        int max = listHD.get(0).getTien_con_lai();
-        for(int i = 1 ; i < listHD.size() ; i++){
-            if(listHD.get(i).getTien_con_lai() > max){
-                max = listHD.get(i).getTien_con_lai();
+/*s3*/  int max = listHD.get(0).getTien_con_lai();
+/*c1*/  for(int i = 1 ; i < listHD.size() ; i++){
+/*c2*/      if(listHD.get(i).getTien_con_lai() > max){
+/*s4*/          max = listHD.get(i).getTien_con_lai();
             }
         }
-        return max;
+/*s5*/  return max;
     }
     public int getHoaDonCoGiaMin(){
-        this.resetListHD();
-        this.loadListHD();
+/*s1*/  this.resetListHD();
+/*s2*/  this.loadListHD();
         
-        int min = listHD.get(0).getTien_con_lai();
-        for(int i = 1 ; i < listHD.size() ; i++){
-            if(listHD.get(i).getTien_con_lai() < min){
-                min = listHD.get(i).getTien_con_lai();
+/*s3*/  int min = listHD.get(0).getTien_con_lai();
+/*c1*/  for(int i = 1 ; i < listHD.size() ; i++){
+/*c2*/      if(listHD.get(i).getTien_con_lai() < min){
+/*s4*/          min = listHD.get(i).getTien_con_lai();
             }
         }
-        return min;
+/*s5*/  return min;
     }
     public int getDoanhThuThangHienTai(){
-        this.resetListHD();
-        this.loadListHD();
+/*s1*/  this.resetListHD();
+/*s2*/  this.loadListHD();
         
-        int tong = 0;
-        String dateNow = java.time.LocalDate.now().toString();
-        String mountNow = dateNow.split("-")[1];
-        String YearNow = dateNow.split("-")[0];
+/*s3*/  int tong = 0;
+/*s4*/   String dateNow = java.time.LocalDate.now().toString();String mountNow = dateNow.split("-")[1];String YearNow = dateNow.split("-")[0];
         
-        for (HoaDonDTO hoaDonDTO : listHD) {
-            if(hoaDonDTO.getNgay_xuat().toString().split("-")[0].equals(YearNow)){
-                if(hoaDonDTO.getNgay_xuat().toString().split("-")[1].equals(mountNow)){
-                    tong += hoaDonDTO.getTien_con_lai();
+/*c1*/  for (HoaDonDTO hoaDonDTO : listHD) {
+/*c2*/      if(hoaDonDTO.getNgay_xuat().toString().split("-")[0].equals(YearNow)){
+/*c3*/          if(hoaDonDTO.getNgay_xuat().toString().split("-")[1].equals(mountNow)){
+/*s5*/              tong += hoaDonDTO.getTien_con_lai();
                 }
             }
         }
-        return tong;
+/*s6*/  return tong;
     }
     public int getDoanhThuNamHienTai(){
-        this.resetListHD();
-        this.loadListHD();
+/*s1*/  this.resetListHD();
+/*s2*/  this.loadListHD();
         
-        int tong = 0;
-        String yearNow = java.time.LocalDate.now().toString().split("-")[0];
-        for (HoaDonDTO hoaDonDTO : listHD) {
-            if(hoaDonDTO.getNgay_xuat().toString().split("-")[0].equals(yearNow)){
-                tong += hoaDonDTO.getTien_con_lai();
+/*s3*/  int tong = 0;
+/*s4*/  String yearNow = java.time.LocalDate.now().toString().split("-")[0];
+/*c1*/  for (HoaDonDTO hoaDonDTO : listHD) {
+/*c2*/      if(hoaDonDTO.getNgay_xuat().toString().split("-")[0].equals(yearNow)){
+/*s5*/          tong += hoaDonDTO.getTien_con_lai();
             }
         }
-        return tong;
+/*s6*/  return tong;
     }
     public int getDoanhThuNgayHienTai(){
         this.resetListHD();
@@ -201,7 +197,7 @@ public class HoaDonBLL {
         while(modelHD.getRowCount() > 0){
             modelHD.removeRow(0);
         }
-        resetListExcel();
+        this.resetListExcel();
         ThanhVienDTO thanhVienDTO = null;
         String ten_tv = "";
 
@@ -227,7 +223,7 @@ public class HoaDonBLL {
                     hoaDonDTO.getMa_phieu_giam_gia(),
                     hoaDonDTO.getDiem()
                 });
-                updateListExcel(hoaDonDTO);
+                this.updateListExcel(hoaDonDTO);
             }
         }
         modelHD.fireTableDataChanged();
@@ -240,7 +236,7 @@ public class HoaDonBLL {
         while(modelHD.getRowCount() > 0){
             modelHD.removeRow(0);
         }
-        resetListExcel();
+        this.resetListExcel();
         ThanhVienDTO thanhVienDTO = null;
         String ten_tv = "";
 
@@ -266,7 +262,7 @@ public class HoaDonBLL {
                     hoaDonDTO.getMa_phieu_giam_gia(),
                     hoaDonDTO.getDiem()
                 });
-                updateListExcel(hoaDonDTO);
+                this.updateListExcel(hoaDonDTO);
             }
         }
         modelHD.fireTableDataChanged();
@@ -279,7 +275,7 @@ public class HoaDonBLL {
         while(modelHD.getRowCount() > 0){
             modelHD.removeRow(0);
         }
-        resetListExcel();
+        this.resetListExcel();
         ThanhVienDTO thanhVienDTO = null;
         String ten_tv = "";
 
@@ -305,7 +301,7 @@ public class HoaDonBLL {
                     hoaDonDTO.getMa_phieu_giam_gia(),
                     hoaDonDTO.getDiem()
                 });
-                updateListExcel(hoaDonDTO);
+                this.updateListExcel(hoaDonDTO);
             }
         }
         modelHD.fireTableDataChanged();
@@ -318,7 +314,7 @@ public class HoaDonBLL {
         while(modelHD.getRowCount() > 0){
             modelHD.removeRow(0);
         }
-        resetListExcel();
+        this.resetListExcel();
         ThanhVienDTO thanhVienDTO = null;
         String ten_tv = "";
 

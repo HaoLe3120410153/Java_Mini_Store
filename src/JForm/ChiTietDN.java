@@ -26,7 +26,7 @@ public class ChiTietDN extends javax.swing.JFrame {
     }
     public void initTableCTDN(){
         model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Mã món","Tên món","Số lượng","Giá","Thành tiền"});
+        model.setColumnIdentifiers(new String[]{"Mã sản phẩm","Tên sản phẩm","Số lượng","Giá","Thành tiền"});
         tblCT.setModel(model);
     }
     /**
@@ -71,7 +71,7 @@ public class ChiTietDN extends javax.swing.JFrame {
                 .addComponent(lblMaHD4, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
         );
 
-        cbxSearch_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã món", "Tên món" }));
+        cbxSearch_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
         cbxSearch_1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm theo"));
 
         txtSearch.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
@@ -207,10 +207,10 @@ public class ChiTietDN extends javax.swing.JFrame {
         String searchType = String.valueOf(cbxSearch_1.getSelectedItem());
 
         switch (searchType) {
-            case "Mã món":
+            case "Mã sản phẩm":
             cTDonDatHangBLL.timKiemCTNDTheoMaMon(model,search,ma_dn);
             break;
-            case "Tên món":
+            case "Tên sản phẩm":
             cTDonDatHangBLL.timKiemCTHDTheoTenMon(model,search,ma_dn);
             break;
         }
@@ -282,23 +282,11 @@ public class ChiTietDN extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxSearch_1;
     private javax.swing.JComboBox<String> cbxSearch_2;
     private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblMaHD;
-    private javax.swing.JLabel lblMaHD1;
-    private javax.swing.JLabel lblMaHD2;
-    private javax.swing.JLabel lblMaHD3;
     private javax.swing.JLabel lblMaHD4;
     private javax.swing.JTable tblCT;
     private javax.swing.JTextField txtSeachCTDen;

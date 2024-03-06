@@ -3,6 +3,7 @@ package JForm;
 import BLL.NhanVienBLL;
 import BLL.TaiKhoanBLL;
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,7 +58,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_thucannhanh_30px.png"))); // NOI18N
         jLabel3.setText("LOGIN");
-        jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Cửa hàng đồ ăn nhanh"));
+        jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Siêu thị mini"));
 
         btnLogin.setText("Đăng nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -117,20 +118,18 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String username = txtUsername.getText();
-        String password = String.valueOf(txtPassword.getPassword());
+/*s1*/  String username = txtUsername.getText();
+/*s2*/  String password = String.valueOf(txtPassword.getPassword());
 
-        if (taiKhoanBLL.login(username, password) == true) {
-            int ma_tk = taiKhoanBLL.getMaTkAfterLogin(username, password);
-            int quyen = taiKhoanBLL.getTkByMaTK(ma_tk).getPhan_quyen();
-            String ma_nv = new NhanVienBLL().getMaNvByMaTk(ma_tk);
+/*c1*/  if (taiKhoanBLL.login(username, password) == true) {
+/*s3*/      int ma_tk = taiKhoanBLL.getMaTkAfterLogin(username, password);
+/*s4*/      int quyen = taiKhoanBLL.getTkByMaTK(ma_tk).getPhan_quyen();
+/*s5*/      String ma_nv = new NhanVienBLL().getMaNvByMaTk(ma_tk);
             
-//            System.out.println(ma_nv);
-//            System.out.println(ma_tk);
-            new ManageForm(ma_nv,quyen,ma_tk).setVisible(true);   
+/*s6*/      new ManageForm(ma_nv,quyen,ma_tk).setVisible(true);   
         } else {
-            JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return;
+/*s7*/      JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu", "Lỗi", JOptionPane.ERROR_MESSAGE);
+/*s8*/      return;
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -165,7 +164,7 @@ public class LoginForm extends javax.swing.JFrame {
 //            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
         try {
-        UIManager.setLookAndFeel(new FlatIntelliJLaf());
+        UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }

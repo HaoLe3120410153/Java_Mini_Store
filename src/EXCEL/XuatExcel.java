@@ -58,15 +58,15 @@ public class XuatExcel {
             cell = row.createCell(8, CellType.STRING);
             cell.setCellValue("Điểm");
             
-//            new HoaDonBLL().resetListHD();
-//            new HoaDonBLL().loadListHD();
+            new HoaDonBLL().resetListHD();
+            new HoaDonBLL().loadListHD();
             List<HoaDonDTO> listExcelHD = new HoaDonBLL().getListExcel();
             for (int i = 0; i < listExcelHD.size(); i++) {
                 HoaDonDTO hddto = listExcelHD.get(i);
                 row = spreadsheet.createRow((short) 4 + i);
                 row.setHeight((short) 400);
                 row.createCell(0).setCellValue(hddto.getMa_hoa_don());
-                row.createCell(1).setCellValue(hddto.getNgay_xuat());
+                row.createCell(1).setCellValue(hddto.getNgay_xuat().toString());
                 row.createCell(2).setCellValue(hddto.getMa_nhan_vien());
                 row.createCell(3).setCellValue(hddto.getMa_thanh_vien());
                 row.createCell(4).setCellValue(hddto.getTong_tien());
@@ -107,8 +107,8 @@ public class XuatExcel {
             cell = row.createCell(4, CellType.STRING);
             cell.setCellValue("Tổng tiền");
             
-//            new DonDatHangBLL().resetListDDH();
-//            new DonDatHangBLL().loadListDDH();
+            new DonDatHangBLL().resetListDDH();
+            new DonDatHangBLL().loadListDDH();
             
 //            List<DonDatHangDTO> listDDH = new DonDatHangBLL().getList();
             List<DonDatHangDTO> listDDH = new DonDatHangBLL().getListExcel();
